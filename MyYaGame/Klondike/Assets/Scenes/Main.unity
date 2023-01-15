@@ -359,8 +359,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10a57fbec870fa48a04a56dd66bfc97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tranform1: {fileID: 2126757729}
-  tranform2: {fileID: 783883467}
+  tranform1: {fileID: 2126757730}
+  tranform2: {fileID: 783883468}
   Card: {fileID: 8376508376954814476, guid: 686e1078fc85eec41aa11b356ccc519d, type: 3}
   CardBed: {fileID: 9107955863550792729, guid: 530f04a4439824f47a1556a8c40436f0, type: 3}
 --- !u!1 &783883467
