@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CardBed : MonoBehaviour
 {
-    
-    
+    public int StartingNumberOfCards { get; private set; }
 
 }
