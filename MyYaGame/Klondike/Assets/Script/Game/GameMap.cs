@@ -14,7 +14,7 @@ public class GameMap : MonoBehaviour
 
     void Start()
     {
-        var u = new KlondaikeRule().GatCardDeck52();
+        var u = new Dealer().GatCardDeck52();
 
         var i = Instantiate(CardBed);
 

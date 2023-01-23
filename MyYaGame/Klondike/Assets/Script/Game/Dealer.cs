@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KlondaikeRule
+public class Dealer
 {
     private List<CardItem> _deck = new List<CardItem>();
     public List<CardItem> GatCardDeck52()
@@ -11,6 +11,7 @@ public class KlondaikeRule
         MakeСardLine(CardSuit.Hearts);
         MakeСardLine(CardSuit.Spades);
         MakeСardLine(CardSuit.Clubs);
+        Shuffle(_deck);
         return _deck;
     }
 
@@ -21,8 +22,6 @@ public class KlondaikeRule
             var card = new CardItem(suit,i);
             _deck.Add(card); 
         }
-
-        Shuffle(_deck);
     }
     
 
