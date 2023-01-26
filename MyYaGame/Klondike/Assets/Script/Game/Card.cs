@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -20,8 +21,14 @@ public class Card : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHandle
     public static Card dragItem;
     public Vector3 startPosition;
     public Transform StartParrent;
+    private CanvasGroup _canvasGroup;
 
+    private void Start()
+    {
+        _canvasGroup = GetComponent<CanvasGroup>();
+    }
 
+    #region Card
     public void SetCard(CardItem cardItem)
     {
         CardItem = cardItem;
@@ -72,26 +79,36 @@ public class Card : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHandle
         hearts.SetActive(false);
         spades.SetActive(false);
     }
+    #endregion
 
+    #region Drag
     public void OnBeginDrag(PointerEventData eventData)
     {
         dragItem = this;
         startPosition = transform.position;
         StartParrent = transform.parent;
+        _canvasGroup.blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = Input.mousePosition;
+        transform.position = Camera.main.ScreenToWorldPoint(new Vector3(eventData.position.x,eventData.position.y,1)) ;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         dragItem = null;
-        if (StartParrent == transform.parent)
+        _canvasGroup.blocksRaycasts = true;
+       if (StartParrent == transform.parent)
         {
             transform.position = startPosition;
         }
-        transform.localPosition = Vector3.zero;
+        else
+        {
+            transform.localPosition = Vector3.zero;
+        }
+        
     }
+    #endregion
+
 }

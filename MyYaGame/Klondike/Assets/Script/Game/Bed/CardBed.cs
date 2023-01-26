@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardBed : MonoBehaviour,IDragHandler
+public class CardBed : MonoBehaviour,IDropHandler
 {
     public int startingNumberOfCards;
     public float CardIndentation = 0f;
@@ -18,8 +18,7 @@ public class CardBed : MonoBehaviour,IDragHandler
             card.gameObject.transform.position.y+_currentIndent));
         _currentIndent -= CardIndentation;
     }
-
-    public void OnDrag(PointerEventData eventData)
+    public void OnDrop(PointerEventData eventData)
     {
         var item = Card.dragItem;
         if (item!=null)
