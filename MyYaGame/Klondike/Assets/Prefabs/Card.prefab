@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 6979512796650916161}
   - component: {fileID: 1329644649559878512}
   - component: {fileID: -1143642845123274302}
+  - component: {fileID: -1646922445953467309}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -441,8 +442,6 @@ MonoBehaviour:
   hearts: {fileID: 225883613284560849}
   spades: {fileID: 8025650027360891916}
   dignity: {fileID: 7617788915272292192}
-  startPosition: {x: 0, y: 0, z: 0}
-  StartParrent: {fileID: 0}
 --- !u!225 &-1143642845123274302
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -455,6 +454,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &-1646922445953467309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8376508376954814476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5a29295ca59c4847be0c849fc677e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPosition: {x: 0, y: 0, z: 0}
+  StartParrent: {fileID: 0}
 --- !u!1 &8911068455508831882
 GameObject:
   m_ObjectHideFlags: 0

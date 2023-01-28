@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Card : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHandler
+public class Card : MonoBehaviour
 {
     [SerializeField] private GameObject clubs;
     [SerializeField] private GameObject diamonds;
@@ -15,20 +15,9 @@ public class Card : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHandle
 
     [Header("dignity")] [SerializeField] private TextMeshProUGUI dignity;
     public CardColor CardColor { get; private set; }
-    
+
     public CardItem CardItem { get; set; }
 
-    public static Card dragItem;
-    public Vector3 startPosition;
-    public Transform StartParrent;
-    private CanvasGroup _canvasGroup;
-
-    private void Start()
-    {
-        _canvasGroup = GetComponent<CanvasGroup>();
-    }
-
-    #region Card
     public void SetCard(CardItem cardItem)
     {
         CardItem = cardItem;
@@ -79,36 +68,4 @@ public class Card : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHandle
         hearts.SetActive(false);
         spades.SetActive(false);
     }
-    #endregion
-
-    #region Drag
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        dragItem = this;
-        startPosition = transform.position;
-        StartParrent = transform.parent;
-        _canvasGroup.blocksRaycasts = false;
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        transform.position = Camera.main.ScreenToWorldPoint(new Vector3(eventData.position.x,eventData.position.y,1)) ;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        dragItem = null;
-        _canvasGroup.blocksRaycasts = true;
-       if (StartParrent == transform.parent)
-        {
-            transform.position = startPosition;
-        }
-        else
-        {
-            transform.localPosition = Vector3.zero;
-        }
-        
-    }
-    #endregion
-
 }

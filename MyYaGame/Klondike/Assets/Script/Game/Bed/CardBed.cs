@@ -32,7 +32,7 @@ public class CardBed : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)//при сбросе над бед
     {
-        var item = Card.dragItem; //взятрь карту которая в полете
+        var item = DragItem.dragItem; //взятрь карту которая в полете
         if (item != null)//если не ноль
         {
             if(_cards.Count>0)//если в списке карт этого обьекта больше 0
