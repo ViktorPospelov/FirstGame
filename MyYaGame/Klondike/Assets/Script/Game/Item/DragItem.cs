@@ -5,40 +5,54 @@ using UnityEngine.EventSystems;
 
 public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public static DragItem dragItem;
-    public Vector3 startPosition;
-    public Transform StartParrent;
+    private Vector3 _startPosition;
+    private Transform _startParrent;
+    private Vector3 _localTransform;
     private CanvasGroup _canvasGroup;
+    private Transform _dragLayer;
 
     void Start()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
+        _dragLayer = GameObject.FindWithTag("DragLayer").transform;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        dragItem = this;
-        startPosition = transform.position;
-        StartParrent = transform.parent;
+        
+            _startPosition = transform.position;
+            _startParrent = transform.parent;
+        
+
         _canvasGroup.blocksRaycasts = false;
+
+        _localTransform = transform.localPosition - Camera.main.ScreenToWorldPoint(new Vector3(eventData.position.x,
+            eventData.position.y, 1));
+        eventData.pointerDrag.transform.SetParent(_dragLayer);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = Camera.main.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, 1));
+        transform.position = Camera.main.ScreenToWorldPoint(new Vector3(eventData.position.x,
+            eventData.position.y, 1) + _localTransform);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        dragItem = null;
         _canvasGroup.blocksRaycasts = true;
-        if (StartParrent == transform.parent)
+        if (_dragLayer == transform.parent)
         {
-            transform.position = startPosition;
+            transform.position = _startPosition;
+            transform.SetParent(_startParrent);
         }
         else
         {
             transform.localPosition = Vector3.zero;
+            transform.Translate(new Vector3(0,
+                -0.5f));
         }
+        var it = eventData.pointerDrag.GetComponent<Card>();
+        it.CardItem.CardBed = eventData.pointerEnter.GetComponent<CardBed>();
+        Debug.Log(it.CardItem.CardBed);
     }
 }

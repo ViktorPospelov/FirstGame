@@ -15,12 +15,12 @@ public class Dealer : MonoBehaviour
 
     private void Start()
     {
+        _deck = GetCardDeck52();
         SetStartMap();
     }
 
     private void SetStartMap()
     {
-        _deck = GetCardDeck52();
         int installedCard = 0;
         foreach (var bed in _cardBeds)
         {
