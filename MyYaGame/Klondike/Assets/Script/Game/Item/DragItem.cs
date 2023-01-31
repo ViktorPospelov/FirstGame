@@ -10,8 +10,9 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Vector3 _localTransform;
     private CanvasGroup _canvasGroup;
     private Transform _dragLayer;
+    [SerializeField] private Card _card;
 
-    void Start()
+        void Start()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
         _dragLayer = GameObject.FindWithTag("DragLayer").transform;

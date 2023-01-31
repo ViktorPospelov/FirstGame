@@ -12,6 +12,7 @@ public class Card : MonoBehaviour
     [SerializeField] private GameObject diamonds;
     [SerializeField] private GameObject hearts;
     [SerializeField] private GameObject spades;
+    [SerializeField] private GameObject _cardClose;
 
     [Header("dignity")] [SerializeField] private TextMeshProUGUI dignity;
     public CardColor CardColor { get; private set; }

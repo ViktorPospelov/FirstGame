@@ -11,38 +11,38 @@ public class CardBed : MonoBehaviour, IDropHandler
     public float CardIndentation = 0f;
     private List<Card> _cards = new List<Card>();
 
-    public void InsertStartCard(Card insertCard) //устоновить карту 
+    public void InsertStartCard(Card insertCard) 
     {
-        var card = Instantiate(insertCard.gameObject).GetComponent<Card>(); //встваить карту
+        var card = Instantiate(insertCard.gameObject).GetComponent<Card>();
 
-        if (_cards.Count > 0) //если карты в колоде есть
+        if (_cards.Count > 0)
         {
             card.gameObject.transform.SetParent(_cards[_cards.Count - 1].gameObject.transform,
-                false); //встваить в другую карту
+                false);
         }
-        else //если нету
+        else
         {
-            card.gameObject.transform.SetParent(transform, false); //встваить текуший кардБед
+            card.gameObject.transform.SetParent(transform, false);
         }
 
         card.gameObject.transform.Translate(new Vector3(0,
-            -CardIndentation)); //подвинуть на отступ вниз
+            -CardIndentation));
 
-        _cards.Add(card); //добавить карту в список
+        _cards.Add(card);
     }
 
-    public void OnDrop(PointerEventData eventData) //при сбросе над бед
+    public void OnDrop(PointerEventData eventData)
     {
-        _cards = GetComponentsInChildren<Card>().ToList(); //взятрь карты 
-        if (eventData.pointerDrag != null) //если не ноль
+        _cards = GetComponentsInChildren<Card>().ToList(); 
+        if (eventData.pointerDrag != null)
         {
-            if (_cards.Count > 0) //если в списке карт этого обьекта больше 0
+            if (_cards.Count > 0)
             {
                 
-                eventData.pointerDrag.transform.SetParent(_cards[_cards.Count - 1].gameObject.transform); //то карта в карту
+                eventData.pointerDrag.transform.SetParent(_cards[_cards.Count - 1].gameObject.transform);
                 
             }
-            else //иначе
+            else
             {
                 eventData.pointerDrag.transform.SetParent(transform);
                 
