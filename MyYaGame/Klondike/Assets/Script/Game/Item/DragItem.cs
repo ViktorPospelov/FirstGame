@@ -51,8 +51,5 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             transform.Translate(new Vector3(0,
                 -0.5f));
         }
-        var it = eventData.pointerDrag.GetComponent<Card>();
-        it.CardItem.CardBed = eventData.pointerEnter.GetComponent<CardBed>();
-        Debug.Log(it.CardItem.CardBed);
     }
 }
