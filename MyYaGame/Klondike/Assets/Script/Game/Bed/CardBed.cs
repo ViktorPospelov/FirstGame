@@ -9,12 +9,12 @@ public class CardBed : MonoBehaviour, IDropHandler
 {
     public int startingNumberOfCards;
     public float CardIndentation = 0f;
-    private List<Card> _cards = new List<Card>();
+    protected List<Card> _cards = new List<Card>();
 
-    public void InsertStartCard(Card insertCard) 
+    public virtual void InsertStartCard(Card insertCard) 
     {
-        var card = Instantiate(insertCard.gameObject).GetComponent<Card>();
-
+        var card = Instantiate(insertCard);
+        
         if (_cards.Count > 0)
         {
             card.gameObject.transform.SetParent(_cards[_cards.Count - 1].gameObject.transform,
@@ -24,29 +24,25 @@ public class CardBed : MonoBehaviour, IDropHandler
         {
             card.gameObject.transform.SetParent(transform, false);
         }
-
-        card.gameObject.transform.Translate(new Vector3(0,
-            -CardIndentation));
-
+        card.gameObject.transform.localPosition = Vector3.zero;
         _cards.Add(card);
     }
 
-    public void OnDrop(PointerEventData eventData)
+    public virtual void OnDrop(PointerEventData eventData)
     {
         _cards = GetComponentsInChildren<Card>().ToList(); 
         if (eventData.pointerDrag != null)
         {
             if (_cards.Count > 0)
             {
-                
                 eventData.pointerDrag.transform.SetParent(_cards[_cards.Count - 1].gameObject.transform);
-                
             }
             else
             {
                 eventData.pointerDrag.transform.SetParent(transform);
-                
             }
+           if(_cards.Count>1) _cards[_cards.Count-1].gameObject.transform.Translate(new Vector3(0,
+                -CardIndentation));
         }
     }
 }

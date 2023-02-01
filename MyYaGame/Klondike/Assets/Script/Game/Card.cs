@@ -5,22 +5,26 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class Card : MonoBehaviour
 {
-    [SerializeField] private GameObject clubs;
-    [SerializeField] private GameObject diamonds;
-    [SerializeField] private GameObject hearts;
-    [SerializeField] private GameObject spades;
-    [SerializeField] private GameObject _cardClose;
-
-    [Header("dignity")] [SerializeField] private TextMeshProUGUI dignity;
+    [FormerlySerializedAs("clubs")] [SerializeField] private GameObject _clubs;
+    [FormerlySerializedAs("diamonds")] [SerializeField] private GameObject _diamonds;
+    [FormerlySerializedAs("hearts")] [SerializeField] private GameObject _hearts;
+    [FormerlySerializedAs("spades")] [SerializeField] private GameObject _spades;
+    [FormerlySerializedAs("cardClose")] [SerializeField] private GameObject _cardClose;
+    
+    [SerializeField] private TextMeshProUGUI dignity;
     public CardColor CardColor { get; private set; }
 
     public CardItem CardItem { get; set; }
+    public bool CardClose { get; set; }
 
     public void SetCard(CardItem cardItem)
     {
+        _cardClose.SetActive(false);
+        CardClose = false;
         CardItem = cardItem;
         ClearAll();
         SetSuitCardCalor();
@@ -28,12 +32,17 @@ public class Card : MonoBehaviour
         SetCardSuit();
     }
 
+    public void SetCardClose(bool CardState)
+    {
+        CardClose = CardState;
+        _cardClose.SetActive(CardClose);
+    }
     private void SetCardSuit()
     {
-        if (CardItem.CardSuit == CardSuit.Clubs) clubs.SetActive(true);
-        if (CardItem.CardSuit == CardSuit.Diamonds) diamonds.SetActive(true);
-        if (CardItem.CardSuit == CardSuit.Hearts) hearts.SetActive(true);
-        if (CardItem.CardSuit == CardSuit.Spades) spades.SetActive(true);
+        if (CardItem.CardSuit == CardSuit.Clubs) _clubs.SetActive(true);
+        if (CardItem.CardSuit == CardSuit.Diamonds) _diamonds.SetActive(true);
+        if (CardItem.CardSuit == CardSuit.Hearts) _hearts.SetActive(true);
+        if (CardItem.CardSuit == CardSuit.Spades) _spades.SetActive(true);
     }
 
     private void SetCardDignity(int cardDignity)
@@ -64,9 +73,9 @@ public class Card : MonoBehaviour
     private void ClearAll()
     {
         dignity.text = "";
-        clubs.SetActive(false);
-        diamonds.SetActive(false);
-        hearts.SetActive(false);
-        spades.SetActive(false);
+        _clubs.SetActive(false);
+        _diamonds.SetActive(false);
+        _hearts.SetActive(false);
+        _spades.SetActive(false);
     }
 }

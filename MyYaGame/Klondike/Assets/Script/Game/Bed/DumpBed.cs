@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DumpBed : CardBed
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void OnDrop(PointerEventData eventData)
     {
-        
-    }
+        base.OnDrop(eventData);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        eventData.pointerDrag.gameObject.GetComponent<Card>().SetCardClose(false);
     }
 }
