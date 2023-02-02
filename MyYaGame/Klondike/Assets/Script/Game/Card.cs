@@ -16,11 +16,18 @@ public class Card : MonoBehaviour
     [FormerlySerializedAs("cardClose")] [SerializeField] private GameObject _cardClose;
     
     [SerializeField] private TextMeshProUGUI dignity;
+    
     public CardColor CardColor { get; private set; }
 
     public CardItem CardItem { get; set; }
     public bool CardClose { get; set; }
+    
+    
 
+
+    private void Start()
+    {
+    }
     public void SetCard(CardItem cardItem)
     {
         _cardClose.SetActive(false);
@@ -34,8 +41,11 @@ public class Card : MonoBehaviour
 
     public void SetCardClose(bool CardState)
     {
+        
         CardClose = CardState;
         _cardClose.SetActive(CardClose);
+       
+        
     }
     private void SetCardSuit()
     {
