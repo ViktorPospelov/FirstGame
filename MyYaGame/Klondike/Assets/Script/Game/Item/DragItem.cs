@@ -11,7 +11,6 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Vector3 _localTransform;
     private CanvasGroup _canvasGroup;
     private Transform _dragLayer;
-    private bool _cantMove;
     [SerializeField] private Card _card;
 
     private void Start()
@@ -20,16 +19,10 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         _dragLayer = GameObject.FindWithTag("DragLayer").transform;
     }
 
-    public void SetCantMove(bool canMove)
-    {
-        _cantMove = canMove;
-    }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
         _startPosition = transform.position;
         _startParrent = transform.parent;
-
 
         _canvasGroup.blocksRaycasts = false;
         if (!_card.CardClose)
