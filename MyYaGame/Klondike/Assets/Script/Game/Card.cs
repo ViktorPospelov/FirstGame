@@ -23,11 +23,6 @@ public class Card : MonoBehaviour
     public bool CardClose { get; set; }
     
     
-
-
-    private void Start()
-    {
-    }
     public void SetCard(CardItem cardItem)
     {
         _cardClose.SetActive(false);
