@@ -23,7 +23,6 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         _startPosition = transform.position;
         _startParrent = transform.parent;
-
         _canvasGroup.blocksRaycasts = false;
         if (!_card.CardClose)
         {
