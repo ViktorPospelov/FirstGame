@@ -36,11 +36,8 @@ public class Card : MonoBehaviour
 
     public void SetCardClose(bool CardState)
     {
-        
         CardClose = CardState;
         _cardClose.SetActive(CardClose);
-       
-        
     }
     private void SetCardSuit()
     {
@@ -71,7 +68,6 @@ public class Card : MonoBehaviour
             CardColor = CardColor.Red;
             return;
         }
-
         CardColor = CardColor.Black;
     }
 
