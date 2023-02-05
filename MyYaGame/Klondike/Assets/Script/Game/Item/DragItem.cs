@@ -21,7 +21,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         _startPosition = transform.position;
         _startParrent = transform.parent;
         _canvasGroup.blocksRaycasts = false;
-        
+
         if (!_card.CardClose)
         {
             _localTransform = transform.localPosition - Camera.main.ScreenToWorldPoint(new Vector3(eventData.position.x,
@@ -43,7 +43,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
         else
         {
-            transform.position = new Vector3(1000, 1000);
+            transform.position = _startPosition;
         }
     }
 
@@ -58,6 +58,8 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         else
         {
             transform.localPosition = Vector3.zero;
+            transform.Translate(new Vector3(0,
+                -Constant.Setting.OpenCardIndent));
         }
     }
 }
