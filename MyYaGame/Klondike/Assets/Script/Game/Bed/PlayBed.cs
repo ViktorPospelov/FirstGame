@@ -16,15 +16,4 @@ public class PlayBed : CardBed
             _cards.Last().SetCardClose(true);
         }
     }
-
-    public override void OnDrop(PointerEventData eventData)
-    {
-        base.OnDrop(eventData);
-        if (eventData.pointerDrag != null)
-        {
-            _cards.Last().gameObject.transform.Translate(new Vector3(0,
-                -Constant.Setting.OpenCardIndent));
-        }
-    }
-    
 }

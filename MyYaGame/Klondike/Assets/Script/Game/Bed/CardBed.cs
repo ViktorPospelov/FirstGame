@@ -31,7 +31,7 @@ public class CardBed : MonoBehaviour, IDropHandler
     {
         _cards = GetComponentsInChildren<Card>().ToList();
         startingNumberOfCards = _cards.Count;
-        
+
         if (eventData.pointerDrag != null)
         {
             if (_cards.Count > 0)
@@ -42,12 +42,25 @@ public class CardBed : MonoBehaviour, IDropHandler
             {
                 eventData.pointerDrag.transform.SetParent(transform);
             }
-           if (_cards.Count > 1)
-               eventData.pointerDrag.gameObject.transform.Translate(new Vector3(0,
+
+            if (_cards.Count > 1)
+            {
+                eventData.pointerDrag.gameObject.transform.Translate(new Vector3(0,
                     -Constant.Setting.OpenCardIndent));
-           
-           _cards = GetComponentsInChildren<Card>().ToList();
-           
+            }
+
+            _cards = GetComponentsInChildren<Card>().ToList();
+
+            if (_cards.Last().CardClose)
+            {
+                _cards.Last().Indent = Constant.Setting.CloseCardIndent;
+            }
+            else
+            {
+                _cards.Last().Indent = Constant.Setting.OpenCardIndent;
+            }
+            
+
         }
     }
 }

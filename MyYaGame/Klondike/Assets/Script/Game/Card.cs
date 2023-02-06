@@ -17,6 +17,8 @@ public class Card : MonoBehaviour
     public CardItem CardItem { get; set; }
     public bool CardClose { get; set; }
     
+    public float Indent;
+    
     
     public void SetCard(CardItem cardItem)
     {

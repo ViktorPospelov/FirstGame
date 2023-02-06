@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    private float Indent;
     private Vector3 _startPosition;
     private Transform _startParrent;
     private Vector3 _localTransform;
@@ -46,7 +47,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             transform.position = _startPosition;
         }
     }
-
+    
     public void OnEndDrag(PointerEventData eventData)
     {
         _canvasGroup.blocksRaycasts = true;
@@ -58,8 +59,15 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         else
         {
             transform.localPosition = Vector3.zero;
-            transform.Translate(new Vector3(0,
-                -Constant.Setting.OpenCardIndent));
+            Indent = _card.Indent;
+            if (Indent == 0f)
+            {
+                transform.Translate(new Vector3(0, 0));
+            }
+            else
+            {
+                transform.Translate(new Vector3(0, -Indent));        
+            }
         }
     }
 }
