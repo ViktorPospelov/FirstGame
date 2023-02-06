@@ -31,7 +31,7 @@ public class CardBed : MonoBehaviour, IDropHandler
     {
         _cards = GetComponentsInChildren<Card>().ToList();
         startingNumberOfCards = _cards.Count;
-//создать переменную отслеживаюшую нуль в самой кроватке для карт
+        //создать переменную отслеживаюшую нуль в самой кроватке для карт
         if (eventData.pointerDrag != null)
         {
             if (_cards.Count > 0)
