@@ -39,7 +39,6 @@ public class CardBed : MonoBehaviour, IDropHandler
             case CardBedState.Empty:
                 eventData.pointerDrag.transform.SetParent(transform);
                 _cards.Last().Indent = 0f;
-                
                 break;
             case CardBedState.ThereAreClosed:
                 
