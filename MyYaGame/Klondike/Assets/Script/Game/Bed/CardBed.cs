@@ -31,59 +31,42 @@ public class CardBed : MonoBehaviour, IDropHandler
     public virtual void OnDrop(PointerEventData eventData)
     {
         Debug.Log("OnDrop-bed");
-        _cards = GetComponentsInChildren<Card>().ToList();
+        GetCards();
         CardBedState = GetCardBedState(_cards);
 
+        if(CardBedState.Empty == CardBedState)
+        {
+            eventData.pointerDrag.transform.SetParent(transform);
+        }
+        else
+        {
+            eventData.pointerDrag.transform.SetParent(_cards.Last().gameObject.transform);
+        }
+
+        GetCards();
+        
         switch (CardBedState)
         {
             case CardBedState.Empty:
-                eventData.pointerDrag.transform.SetParent(transform);
-                _cards.Last().Indent = 0f;
+                GetCard(eventData.pointerDrag).Indent = 0f;
                 break;
-            case CardBedState.ThereAreClosed:
-                
+            case CardBedState.AllAreClose:
+                GetCard(eventData.pointerDrag).Indent = Constant.Setting.ClosePlayCardIndent;
                 break;
-            case CardBedState.AllAreOpen:
-                
+            default:
+                GetCard(eventData.pointerDrag).Indent = Constant.Setting.OpenCardIndent;
                 break;
         }
-        
+    }
 
-        if (eventData.pointerDrag != null)
-        {
-            if (_cards.Count > 0)
-            {
-                eventData.pointerDrag.transform.SetParent(_cards.Last().gameObject.transform);
-            }
-            else
-            {
-                /// 0
-            }
+    private void GetCards()
+    {
+        _cards = GetComponentsInChildren<Card>().ToList(); 
+    }
 
-            if (_cards.Count > 1)
-            {
-                eventData.pointerDrag.gameObject.transform.Translate(new Vector3(0,
-                    -Constant.Setting.OpenCardIndent));
-            }
-
-            _cards = GetComponentsInChildren<Card>().ToList();
-            
-            if (_cards.Count > 1)
-            {
-                if (_cards.Last().CardClose)
-                {
-                    _cards.Last().Indent = Constant.Setting.CloseCardIndent;
-                }
-                else
-                {
-                    _cards.Last().Indent = Constant.Setting.OpenCardIndent;
-                }
-            }
-            else
-            {
-                // 0
-            }
-        }
+    private Card GetCard(GameObject obj)
+    {
+        return obj.GetComponent<Card>();
     }
 
     private CardBedState GetCardBedState(List<Card> cards)
@@ -92,8 +75,11 @@ public class CardBed : MonoBehaviour, IDropHandler
         {
             foreach (var card in cards)
             {
-                if (card.CardClose) return CardBedState.ThereAreClosed;
+                if (card.CardClose) CardBedState = CardBedState.AllAreClose;
+                if (CardBedState == CardBedState.AllAreClose && !card.CardClose) 
+                    return CardBedState.ThereAreClosed;
             }
+            if (CardBedState == CardBedState.AllAreClose) return CardBedState;
             return CardBedState.AllAreOpen;
         }
         return CardBedState.Empty;

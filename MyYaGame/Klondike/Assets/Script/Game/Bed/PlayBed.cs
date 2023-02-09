@@ -8,8 +8,7 @@ public class PlayBed : CardBed
     {
         base.InsertStartCard(insertCard);
 
-        if(_cards.Count>1)_cards.Last().gameObject.transform.Translate(new Vector3(0,
-            transform.position.y-Constant.Setting.OpenCardIndent));
+        if(_cards.Count>1)_cards.Last().gameObject.transform.Translate(new Vector3(0,-Constant.Setting.ClosePlayCardIndent));
 
         if (_cards.Count != startingNumberOfCards)
         {
