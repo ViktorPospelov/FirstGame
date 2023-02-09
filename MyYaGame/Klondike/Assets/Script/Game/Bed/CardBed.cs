@@ -76,8 +76,7 @@ public class CardBed : MonoBehaviour, IDropHandler
             foreach (var card in cards)
             {
                 if (card.CardClose) CardBedState = CardBedState.AllAreClose;
-                if (CardBedState == CardBedState.AllAreClose && !card.CardClose) 
-                    return CardBedState.ThereAreClosed;
+                if (CardBedState == CardBedState.AllAreClose && !card.CardClose) return CardBedState.ThereAreClosed;
             }
             if (CardBedState == CardBedState.AllAreClose) return CardBedState;
             return CardBedState.AllAreOpen;
