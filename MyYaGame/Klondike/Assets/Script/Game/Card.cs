@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Card : MonoBehaviour
     [FormerlySerializedAs("hearts")] [SerializeField] private GameObject _hearts;
     [FormerlySerializedAs("spades")] [SerializeField] private GameObject _spades;
     [FormerlySerializedAs("cardClose")] [SerializeField] private GameObject _cardClose;
+
+    [SerializeField] private Button _cardButton;
     
     [SerializeField] private TextMeshProUGUI dignity;
     
@@ -29,6 +32,10 @@ public class Card : MonoBehaviour
         SetSuitCardCalor();
         SetCardDignity(cardItem.CardDignity);
         SetCardSuit();
+        _cardButton.onClick.AddListener(() =>
+        {
+            
+        });
     }
 
     public void SetCardClose(bool CardState)
