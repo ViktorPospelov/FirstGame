@@ -11,7 +11,7 @@ public class Card : MonoBehaviour
     [FormerlySerializedAs("spades")] [SerializeField] private GameObject _spades;
     [FormerlySerializedAs("cardClose")] [SerializeField] private GameObject _cardClose;
 
-    [SerializeField] private Button _cardButton;
+   // [SerializeField] private Button _cardButton;
     
     [SerializeField] private TextMeshProUGUI dignity;
     
@@ -32,10 +32,10 @@ public class Card : MonoBehaviour
         SetSuitCardCalor();
         SetCardDignity(cardItem.CardDignity);
         SetCardSuit();
-        _cardButton.onClick.AddListener(() =>
+       /* _cardButton.onClick.AddListener(() =>
         {
             
-        });
+        });*/
     }
 
     public void SetCardClose(bool CardState)
