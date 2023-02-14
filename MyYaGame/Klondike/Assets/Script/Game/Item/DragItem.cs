@@ -10,6 +10,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private CanvasGroup _canvasGroup;
     private Transform _dragLayer;
     [SerializeField] private Card _card;
+    [SerializeField] private BacklightItem _backlightItem;
 
     private void Start()
     {
