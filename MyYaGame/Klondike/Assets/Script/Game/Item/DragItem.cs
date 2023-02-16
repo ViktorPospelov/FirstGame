@@ -60,6 +60,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
             transform.position = _startPosition;
             transform.SetParent(_startParrent);
+            _backlightItem.Blink();
         }
         else
         {
@@ -75,5 +76,6 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 transform.Translate(new Vector3(0, -Indent));        
             }
         }
+        
     }
 }

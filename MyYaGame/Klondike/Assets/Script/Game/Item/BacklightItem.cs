@@ -22,7 +22,6 @@ public class BacklightItem : MonoBehaviour
     {
         _img.SetActive(true);
         _coroutine = StartCoroutine(Backlight());
-        _img.SetActive(false);
     }
 
     private IEnumerator Backlight()
@@ -32,19 +31,19 @@ public class BacklightItem : MonoBehaviour
             Color color = _sprite.color;
             color.a = f;
             _sprite.color = color;
-            yield return new WaitForSeconds(0.04f);
+            yield return new WaitForSeconds(0.02f);
         }
-        for (float f = 1f; f >= 0.06f; f-=0.05f)
+        for (float f = 0.7f; f >= 0.06f; f-=0.05f)
         {
             Color color = _sprite.color;
             color.a = f;
             _sprite.color = color;
-            yield return new WaitForSeconds(0.06f);
+            yield return new WaitForSeconds(0.04f);
         }
         Color colorEnd = _sprite.color;
         colorEnd.a = 0f;
         _sprite.color = colorEnd;
-        
+        _img.SetActive(false);
         StopCoroutine(_coroutine);
     }
 }
