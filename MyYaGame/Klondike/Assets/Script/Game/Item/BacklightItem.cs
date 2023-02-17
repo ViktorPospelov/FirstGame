@@ -26,7 +26,7 @@ public class BacklightItem : MonoBehaviour
 
     private IEnumerator Backlight()
     {
-        for (float f = 0.05f; f <= 0.05f; f+=0.05f)
+        /*for (float f = 0.05f; f <= 0.05f; f+=0.05f)
         {
             Color color = _sprite.color;
             color.a = f;
@@ -44,6 +44,6 @@ public class BacklightItem : MonoBehaviour
         colorEnd.a = 0f;
         _sprite.color = colorEnd;
         _img.SetActive(false);
-        StopCoroutine(_coroutine);
+        StopCoroutine(_coroutine);*/
     }
 }
