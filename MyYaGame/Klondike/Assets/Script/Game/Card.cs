@@ -1,30 +1,41 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
-    [FormerlySerializedAs("clubs")] [SerializeField] private GameObject _clubs;
-    [FormerlySerializedAs("diamonds")] [SerializeField] private GameObject _diamonds;
-    [FormerlySerializedAs("hearts")] [SerializeField] private GameObject _hearts;
-    [FormerlySerializedAs("spades")] [SerializeField] private GameObject _spades;
-    [FormerlySerializedAs("cardClose")] [SerializeField] private GameObject _cardClose;
+    [FormerlySerializedAs("clubs")] [SerializeField]
+    private GameObject _clubs;
 
-   // [SerializeField] private Button _cardButton;
-    
+    [FormerlySerializedAs("diamonds")] [SerializeField]
+    private GameObject _diamonds;
+
+    [FormerlySerializedAs("hearts")] [SerializeField]
+    private GameObject _hearts;
+
+    [FormerlySerializedAs("spades")] [SerializeField]
+    private GameObject _spades;
+
+    [FormerlySerializedAs("cardClose")] [SerializeField]
+    private GameObject _cardClose;
+
+    [SerializeField] private Button _cardButton;
+
     [SerializeField] private TextMeshProUGUI dignity;
-    
+
     public CardColor CardColor { get; set; }
 
     public CardItem CardItem { get; set; }
     public bool CardClose { get; set; }
 
     public bool CardNoDrag { get; set; } = false;
-    
+
     public float Indent;
-    
-    
+
+
     public void SetCard(CardItem cardItem)
     {
         _cardClose.SetActive(false);
@@ -34,10 +45,31 @@ public class Card : MonoBehaviour
         SetSuitCardCalor();
         SetCardDignity(cardItem.CardDignity);
         SetCardSuit();
-       /* _cardButton.onClick.AddListener(() =>
+        _cardButton.onClick.AddListener(() =>
+        { 
+            Debug.Log("Кнопка");
+            OnCardClick();
+        });
+    }
+
+    private void Update()
+    {
+       /* if (CardClose && Input.GetMouseButton(0))
         {
-            
-        });*/
+            Debug.Log("Клик с инпута");
+            _cardClose.SetActive(false);
+            CardClose = false;
+        }*/
+    }
+
+    public void OnCardClick()
+    {
+        Debug.Log("Click");
+        if (CardClose)
+        {
+            _cardClose.SetActive(false);
+            CardClose = false;
+        }
     }
 
     public void SetCardClose(bool CardState)
@@ -45,6 +77,7 @@ public class Card : MonoBehaviour
         CardClose = CardState;
         _cardClose.SetActive(CardClose);
     }
+
     private void SetCardSuit()
     {
         if (CardItem.CardSuit == CardSuit.Clubs) _clubs.SetActive(true);
@@ -74,6 +107,7 @@ public class Card : MonoBehaviour
             CardColor = CardColor.Red;
             return;
         }
+
         CardColor = CardColor.Black;
     }
 
@@ -85,4 +119,6 @@ public class Card : MonoBehaviour
         _hearts.SetActive(false);
         _spades.SetActive(false);
     }
+
+    
 }
