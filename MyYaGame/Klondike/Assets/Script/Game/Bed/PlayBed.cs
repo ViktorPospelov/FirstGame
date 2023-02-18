@@ -15,4 +15,14 @@ public class PlayBed : CardBed
             _cards.Last().SetCardClose(true);
         }
     }
+
+    public override bool CheckCanMove(PointerEventData eventData)
+    {
+        if (_cards.Count > 0 && !_cards.Last().CardClose)
+        { 
+            if (GetCard(eventData.pointerDrag).CardColor == _cards.Last().CardColor) return false;
+        }
+
+        return true;
+    }
 }

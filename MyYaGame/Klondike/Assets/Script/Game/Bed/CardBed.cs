@@ -13,6 +13,8 @@ public class CardBed : MonoBehaviour, IDropHandler
     public virtual void InsertStartCard(Card insertCard)
     {
         var card = Instantiate(insertCard);
+        card.CardItem = insertCard.CardItem;
+        card.CardColor = insertCard.CardColor;
 
         if (_cards.Count > 0)
         {
@@ -32,6 +34,10 @@ public class CardBed : MonoBehaviour, IDropHandler
     {
         Debug.Log("OnDrop-bed");
         GetCards();
+
+        if (!CheckCanMove(eventData))
+            GetCard(eventData.pointerDrag).CardNoDrag = true;
+            
         CardBedState = GetCardBedState(_cards);
 
         if(CardBedState.Empty == CardBedState)
@@ -59,12 +65,16 @@ public class CardBed : MonoBehaviour, IDropHandler
         }
     }
 
+    public virtual bool CheckCanMove(PointerEventData eventData)
+    {
+        return true;
+    }
     private void GetCards()
     {
         _cards = GetComponentsInChildren<Card>().ToList(); 
     }
 
-    private Card GetCard(GameObject obj)
+    public Card GetCard(GameObject obj)
     {
         return obj.GetComponent<Card>();
     }

@@ -15,10 +15,12 @@ public class Card : MonoBehaviour
     
     [SerializeField] private TextMeshProUGUI dignity;
     
-    public CardColor CardColor { get; private set; }
+    public CardColor CardColor { get; set; }
 
     public CardItem CardItem { get; set; }
     public bool CardClose { get; set; }
+
+    public bool CardNoDrag { get; set; } = false;
     
     public float Indent;
     

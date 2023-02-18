@@ -56,11 +56,12 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         Debug.Log("OnEndDrag");
         _canvasGroup.blocksRaycasts = true;
        
-        if (_dragLayer == transform.parent || _card.CardClose)
+        if (_dragLayer == transform.parent || _card.CardClose || _card.CardNoDrag)
         {
             transform.position = _startPosition;
             transform.SetParent(_startParrent);
             _backlightItem.Blink();
+            _card.CardNoDrag = false;
         }
         else
         {
