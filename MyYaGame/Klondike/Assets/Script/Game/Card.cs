@@ -21,8 +21,7 @@ public class Card : MonoBehaviour
 
     [FormerlySerializedAs("cardClose")] [SerializeField]
     private GameObject _cardClose;
-
-    [SerializeField] private Button _cardButton;
+    
 
     [SerializeField] private TextMeshProUGUI dignity;
 
@@ -34,6 +33,8 @@ public class Card : MonoBehaviour
     public bool CardNoDrag { get; set; } = false;
 
     public float Indent;
+    
+    public CardBed CardBed;
 
 
     public void SetCard(CardItem cardItem)
@@ -45,28 +46,15 @@ public class Card : MonoBehaviour
         SetSuitCardCalor();
         SetCardDignity(cardItem.CardDignity);
         SetCardSuit();
-        _cardButton.onClick.AddListener(() =>
-        { 
-            Debug.Log("Кнопка");
-            OnCardClick();
-        });
-    }
-
-    private void Update()
-    {
-       /* if (CardClose && Input.GetMouseButton(0))
-        {
-            Debug.Log("Клик с инпута");
-            _cardClose.SetActive(false);
-            CardClose = false;
-        }*/
+       
     }
 
     public void OnCardClick()
     {
-        Debug.Log("Click");
-        if (CardClose)
+        if(CardBed is PlayBed || CardBed is DeckBed)
         {
+            if (!CardClose) return;
+        
             _cardClose.SetActive(false);
             CardClose = false;
         }

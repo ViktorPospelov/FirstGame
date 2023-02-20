@@ -26,6 +26,7 @@ public class CardBed : MonoBehaviour, IDropHandler
             card.gameObject.transform.SetParent(transform, false);
         }
 
+        card.CardBed = this;
         card.gameObject.transform.localPosition = Vector3.zero;
         _cards.Add(card);
     }
@@ -49,6 +50,8 @@ public class CardBed : MonoBehaviour, IDropHandler
             eventData.pointerDrag.transform.SetParent(_cards.Last().gameObject.transform);
         }
 
+        GetCard(eventData.pointerDrag).CardBed = this;
+        
         GetCards();
     }
 
