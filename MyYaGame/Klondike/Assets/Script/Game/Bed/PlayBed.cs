@@ -16,6 +16,24 @@ public class PlayBed : CardBed
         }
     }
 
+    public override void OnDrop(PointerEventData eventData)
+    {
+        base.OnDrop(eventData);
+        
+        switch (CardBedState)
+        {
+            case CardBedState.Empty:
+                GetCard(eventData.pointerDrag).Indent = 0f;
+                break;
+            case CardBedState.AllAreClose:
+                GetCard(eventData.pointerDrag).Indent = Constant.Setting.ClosePlayCardIndent;
+                break;
+            default:
+                GetCard(eventData.pointerDrag).Indent = Constant.Setting.OpenCardIndent;
+                break;
+        }
+    }
+
     public override bool CheckCanMove(PointerEventData eventData)
     {
         if (_cards.Count > 0 && !_cards.Last().CardClose)

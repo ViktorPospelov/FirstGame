@@ -50,19 +50,6 @@ public class CardBed : MonoBehaviour, IDropHandler
         }
 
         GetCards();
-        
-        switch (CardBedState)
-        {
-            case CardBedState.Empty:
-                GetCard(eventData.pointerDrag).Indent = 0f;
-                break;
-            case CardBedState.AllAreClose:
-                GetCard(eventData.pointerDrag).Indent = Constant.Setting.ClosePlayCardIndent;
-                break;
-            default:
-                GetCard(eventData.pointerDrag).Indent = Constant.Setting.OpenCardIndent;
-                break;
-        }
     }
 
     public virtual bool CheckCanMove(PointerEventData eventData)

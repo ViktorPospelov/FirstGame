@@ -19,6 +19,6 @@ public class DeckBed : CardBed
         base.OnDrop(eventData);
         
             eventData.pointerDrag.gameObject.GetComponent<Card>().SetCardClose(true);
-        
+            GetCard(eventData.pointerDrag).Indent = 0f;
     }
 }
