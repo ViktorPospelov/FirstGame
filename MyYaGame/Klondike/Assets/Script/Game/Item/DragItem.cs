@@ -9,6 +9,8 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Vector3 _localTransform;
     private CanvasGroup _canvasGroup;
     private Transform _dragLayer;
+    private CardBed _starCardBed;
+    
     [SerializeField] private Card _card;
     [SerializeField] private BacklightItem _backlightItem;
 
@@ -20,7 +22,8 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBeginDrag");
+       // _starCardBed = this;
+        
         _startPosition = transform.position;
         _startParrent = transform.parent;
         _canvasGroup.blocksRaycasts = false;

@@ -28,6 +28,7 @@ public class Card : MonoBehaviour
     public CardColor CardColor { get; set; }
 
     public CardItem CardItem { get; set; }
+    
     public bool CardClose { get; set; }
 
     public bool CardNoDrag { get; set; } = false;
@@ -35,6 +36,8 @@ public class Card : MonoBehaviour
     public float Indent;
     
     public CardBed CardBed;
+    
+    
 
 
     public void SetCard(CardItem cardItem)
@@ -58,6 +61,7 @@ public class Card : MonoBehaviour
             _cardClose.SetActive(false);
             CardClose = false;
         }
+        
     }
 
     public void SetCardClose(bool CardState)
