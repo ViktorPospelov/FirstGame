@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 
 public class DeckBed : CardBed
 {
+    [SerializeField] private DumpBed dumpBed;
+
     public override void InsertStartCard(Card insertCard)
     {
         base.InsertStartCard(insertCard);
@@ -14,11 +16,17 @@ public class DeckBed : CardBed
         _cards.Last().SetCardClose(true);
 
     }
+
     public override void OnDrop(PointerEventData eventData)
     {
         base.OnDrop(eventData);
         
             eventData.pointerDrag.gameObject.GetComponent<Card>().SetCardClose(true);
             GetCard(eventData.pointerDrag).Indent = 0f;
+    }
+
+    public void SetCardDumpBed(Card insertCard)
+    {
+        dumpBed.InsertCard(insertCard);
     }
 }

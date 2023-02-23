@@ -18,27 +18,27 @@ public class BacklightItem : MonoBehaviour
         _sprite.color = color;
     }
 
-    public void Blink()
+    public void Blink(float speed)
     {
         _img.SetActive(true);
-        _coroutine = StartCoroutine(Backlight());
+        _coroutine = StartCoroutine(Backlight(speed));
     }
 
-    private IEnumerator Backlight()
+    private IEnumerator Backlight(float speed)
     {
         for (float f = 0.05f; f <= 0.05f; f+=0.05f)
         {
             Color color = _sprite.color;
             color.a = f;
             _sprite.color = color;
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(speed);
         }
         for (float f = 0.7f; f >= 0.06f; f-=0.05f)
         {
             Color color = _sprite.color;
             color.a = f;
             _sprite.color = color;
-            yield return new WaitForSeconds(0.04f);
+            yield return new WaitForSeconds(speed*2);
         }
         Color colorEnd = _sprite.color;
         colorEnd.a = 0f;

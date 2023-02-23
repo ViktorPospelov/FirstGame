@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingNumberOfCards: 6
-  CardIndentation: 0.5
+  CardBedState: 0
 --- !u!1001 &282928199
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingNumberOfCards: 0
-  CardIndentation: 0
+  CardBedState: 0
 --- !u!1 &479994963
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingNumberOfCards: 4
-  CardIndentation: 0.5
+  CardBedState: 0
 --- !u!1 &867837154
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,7 +986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingNumberOfCards: 0
-  CardIndentation: 0
+  CardBedState: 0
 --- !u!1001 &1266731523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingNumberOfCards: 1
-  CardIndentation: 0.5
+  CardBedState: 0
 --- !u!1 &1300607139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,7 +1286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingNumberOfCards: 7
-  CardIndentation: 0.5
+  CardBedState: 0
 --- !u!1001 &1560073332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1418,7 +1418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingNumberOfCards: 5
-  CardIndentation: 0.5
+  CardBedState: 0
 --- !u!1001 &1573061893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1550,7 +1550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingNumberOfCards: 0
-  CardIndentation: 0
+  CardBedState: 0
 --- !u!1001 &1584473346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1682,7 +1682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingNumberOfCards: 0
-  CardIndentation: 0
+  CardBedState: 0
 --- !u!1001 &1633706479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1814,7 +1814,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingNumberOfCards: 24
-  CardIndentation: 0.005
+  CardBedState: 0
+  dumpBed: {fileID: 1709535462}
 --- !u!1001 &1709535459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1946,7 +1947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingNumberOfCards: 0
-  CardIndentation: 0
+  CardBedState: 0
 --- !u!1001 &1874892859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2078,7 +2079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingNumberOfCards: 3
-  CardIndentation: 0.5
+  CardBedState: 0
 --- !u!1001 &1910894399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2210,7 +2211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingNumberOfCards: 2
-  CardIndentation: 0.5
+  CardBedState: 0
 --- !u!1 &2095196569
 GameObject:
   m_ObjectHideFlags: 0

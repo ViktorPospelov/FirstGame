@@ -54,6 +54,7 @@ public class Card : MonoBehaviour
 
     public void OnCardClick()
     {
+
         if(CardBed is PlayBed || CardBed is DeckBed)
         {
             if (!CardClose) return;
@@ -61,7 +62,7 @@ public class Card : MonoBehaviour
             _cardClose.SetActive(false);
             CardClose = false;
         }
-        
+       if(CardBed is DeckBed){ ((DeckBed)CardBed).SetCardDumpBed(this);}
     }
 
     public void SetCardClose(bool CardState)

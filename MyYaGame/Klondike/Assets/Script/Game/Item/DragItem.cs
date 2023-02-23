@@ -63,7 +63,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
             transform.position = _startPosition;
             transform.SetParent(_startParrent);
-            _backlightItem.Blink();
+            _backlightItem.Blink(0.02f);
             _card.CardNoDrag = false;
             _card.CardBed = _starCardBed;
         }
