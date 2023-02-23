@@ -22,7 +22,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-       // _starCardBed = this;
+       _starCardBed = _card.CardBed;
         
         _startPosition = transform.position;
         _startParrent = transform.parent;
@@ -65,6 +65,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             transform.SetParent(_startParrent);
             _backlightItem.Blink();
             _card.CardNoDrag = false;
+            _card.CardBed = _starCardBed;
         }
         else
         {
