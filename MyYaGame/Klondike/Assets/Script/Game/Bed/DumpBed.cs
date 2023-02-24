@@ -13,6 +13,7 @@ public class DumpBed : CardBed
 
     public void InsertCard(Card insertCard)
     {
+        GetCards();
         insertCard.gameObject.transform.position = transform.position;
         insertCard.GetComponent<BacklightItem>().Blink(0.01f);
         insertCard.CardNoDrag = false;

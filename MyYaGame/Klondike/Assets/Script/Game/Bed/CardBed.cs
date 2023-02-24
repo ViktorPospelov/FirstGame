@@ -59,7 +59,7 @@ public class CardBed : MonoBehaviour, IDropHandler
     {
         return true;
     }
-    private void GetCards()
+    protected void GetCards()
     {
         _cards = GetComponentsInChildren<Card>().ToList(); 
     }
