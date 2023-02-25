@@ -21,23 +21,21 @@ public class Card : MonoBehaviour
 
     [FormerlySerializedAs("cardClose")] [SerializeField]
     private GameObject _cardClose;
-    
+
 
     [SerializeField] private TextMeshProUGUI dignity;
 
     public CardColor CardColor { get; set; }
 
     public CardItem CardItem { get; set; }
-    
+
     public bool CardClose { get; set; }
 
     public bool CardNoDrag { get; set; } = false;
 
     public float Indent;
-    
+
     public CardBed CardBed;
-    
-    
 
 
     public void SetCard(CardItem cardItem)
@@ -49,20 +47,22 @@ public class Card : MonoBehaviour
         SetSuitCardCalor();
         SetCardDignity(cardItem.CardDignity);
         SetCardSuit();
-       
     }
 
     public void OnCardClick()
     {
-
-        if(CardBed is PlayBed || CardBed is DeckBed)
+        if (CardBed is PlayBed || CardBed is DeckBed)
         {
             if (!CardClose) return;
-        
+
             _cardClose.SetActive(false);
             CardClose = false;
+        }  
+
+        if (CardBed is DeckBed)
+        {
+            ((DeckBed)CardBed).SetCardDumpBed(this);
         }
-       if(CardBed is DeckBed){ ((DeckBed)CardBed).SetCardDumpBed(this);}
     }
 
     public void SetCardClose(bool CardState)
@@ -112,6 +112,4 @@ public class Card : MonoBehaviour
         _hearts.SetActive(false);
         _spades.SetActive(false);
     }
-
-    
 }
