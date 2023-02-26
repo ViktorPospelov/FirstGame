@@ -51,13 +51,19 @@ public class Card : MonoBehaviour
 
     public void OnCardClick()
     {
+        if (CardBed is DumpBed && ((DumpBed)CardBed).DeckEmty())
+        {
+            Debug.Log("отправить в колоду");
+            return;
+        }
+
         if (CardBed is PlayBed || CardBed is DeckBed)
         {
             if (!CardClose) return;
 
             _cardClose.SetActive(false);
             CardClose = false;
-        }  
+        }
 
         if (CardBed is DeckBed)
         {

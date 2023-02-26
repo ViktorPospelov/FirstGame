@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 
 public class DumpBed : CardBed
 {
+    
+    [SerializeField] private DeckBed deckBed;
     public override void OnDrop(PointerEventData eventData)
     {
         base.OnDrop(eventData);
@@ -32,5 +34,12 @@ public class DumpBed : CardBed
 
         insertCard.gameObject.transform.localPosition = Vector3.zero;
         _cards.Add(insertCard);
+    }
+
+    public bool DeckEmty()
+    {
+        if (deckBed.DeckEmty()) return true;
+
+        return false;
     }
 }

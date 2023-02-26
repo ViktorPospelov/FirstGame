@@ -1948,6 +1948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingNumberOfCards: 0
   CardBedState: 0
+  deckBed: {fileID: 1633706482}
 --- !u!1001 &1874892859
 PrefabInstance:
   m_ObjectHideFlags: 0

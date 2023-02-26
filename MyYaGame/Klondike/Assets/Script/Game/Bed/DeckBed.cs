@@ -1,4 +1,5 @@
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -28,5 +29,13 @@ public class DeckBed : CardBed
     public void SetCardDumpBed(Card insertCard)
     {
         dumpBed.InsertCard(insertCard);
+    }
+
+    public bool DeckEmty()
+    {
+        GetCards();
+        if (_cards.Count == 0) return true;
+
+        return false;
     }
 }
