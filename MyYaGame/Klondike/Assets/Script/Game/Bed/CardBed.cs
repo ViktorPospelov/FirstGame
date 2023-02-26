@@ -83,4 +83,27 @@ public class CardBed : MonoBehaviour, IDropHandler
         }
         return CardBedState.Empty;
     }
+
+    public virtual void InsertCard(Card insertCard)
+    {
+        GetCards();
+        insertCard.gameObject.transform.position = transform.position;
+        insertCard.GetComponent<BacklightItem>().Blink(0.01f);
+        insertCard.CardNoDrag = false;
+        insertCard.CardBed = this;
+
+        if (_cards.Count > 0)
+        {
+            insertCard.gameObject.transform.SetParent(_cards.Last().gameObject.transform,
+                false);
+        }
+        else
+        {
+            insertCard.gameObject.transform.SetParent(transform, false);
+        }
+
+
+        insertCard.gameObject.transform.localPosition = Vector3.zero;
+        _cards.Add(insertCard);
+    }
 }

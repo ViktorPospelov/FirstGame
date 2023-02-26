@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -29,6 +30,7 @@ public class DeckBed : CardBed
     public void SetCardDumpBed(Card insertCard)
     {
         dumpBed.InsertCard(insertCard);
+        GetCards();
     }
 
     public bool DeckEmty()
@@ -37,5 +39,15 @@ public class DeckBed : CardBed
         if (_cards.Count == 0) return true;
 
         return false;
+    }
+
+    public void SetCardBack(List<Card> cards)
+    {
+        foreach (var card in cards)
+        {
+            card.SetCardClose(true);
+           // card.CardBed = this;
+            InsertCard(card);
+        }
     }
 }

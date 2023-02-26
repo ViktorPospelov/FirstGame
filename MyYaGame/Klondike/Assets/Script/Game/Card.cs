@@ -54,20 +54,26 @@ public class Card : MonoBehaviour
         if (CardBed is DumpBed && ((DumpBed)CardBed).DeckEmty())
         {
             Debug.Log("отправить в колоду");
+            ((DumpBed)CardBed).ReturnDeck();
             return;
         }
 
         if (CardBed is PlayBed || CardBed is DeckBed)
         {
-            if (!CardClose) return;
-
-            _cardClose.SetActive(false);
-            CardClose = false;
-        }
-
-        if (CardBed is DeckBed)
-        {
-            ((DeckBed)CardBed).SetCardDumpBed(this);
+            if (CardClose)
+            {
+                _cardClose.SetActive(false);
+                CardClose = false;
+                if (CardBed is PlayBed) return;
+                ((DeckBed)CardBed).SetCardDumpBed(this);
+            }
+            else
+            {
+                if (CardBed is DeckBed || !CardClose)
+                {
+                    ((DeckBed)CardBed).SetCardDumpBed(this);
+                }
+            }
         }
     }
 
