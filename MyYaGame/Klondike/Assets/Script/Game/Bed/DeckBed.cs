@@ -23,8 +23,8 @@ public class DeckBed : CardBed
     {
         base.OnDrop(eventData);
         
-            eventData.pointerDrag.gameObject.GetComponent<Card>().SetCardClose(true);
-            GetCard(eventData.pointerDrag).Indent = 0f;
+            //eventData.pointerDrag.gameObject.GetComponent<Card>().SetCardClose(true);
+            //GetCard(eventData.pointerDrag).Indent = 0f;
     }
 
     public void SetCardDumpBed(Card insertCard)
@@ -38,6 +38,11 @@ public class DeckBed : CardBed
         GetCards();
         if (_cards.Count == 0) return true;
 
+        return false;
+    }
+
+    public override bool CheckCanMove(PointerEventData eventData)
+    {
         return false;
     }
 
