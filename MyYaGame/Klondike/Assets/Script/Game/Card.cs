@@ -22,8 +22,10 @@ public class Card : MonoBehaviour
     [FormerlySerializedAs("cardClose")] [SerializeField]
     private GameObject _cardClose;
 
-
+    [SerializeField]
+    private GameObject[] ImagCard;
     [SerializeField] private TextMeshProUGUI dignity;
+    [SerializeField] private TextMeshProUGUI dignity2;
 
     public CardColor CardColor { get; set; }
 
@@ -37,9 +39,12 @@ public class Card : MonoBehaviour
 
     public CardBed CardBed;
 
+    private int _dignity;
+
 
     public void SetCard(CardItem cardItem)
     {
+        _dignity = cardItem.CardDignity;
         _cardClose.SetActive(false);
         CardClose = false;
         CardItem = cardItem;
@@ -47,6 +52,18 @@ public class Card : MonoBehaviour
         SetSuitCardCalor();
         SetCardDignity(cardItem.CardDignity);
         SetCardSuit();
+
+        if (_dignity > 10 && _dignity < 14)
+        {
+            foreach (var Ic in ImagCard)
+            {
+                Ic.SetActive(false);
+                if (Convert.ToInt32(Ic.name) == _dignity)
+                {
+                    Ic.SetActive(true);
+                }
+            }
+        }
     }
 
     public void OnCardClick()
@@ -96,6 +113,7 @@ public class Card : MonoBehaviour
         if (cardDignity < 11 && cardDignity > 1)
         {
             dignity.text = cardDignity.ToString();
+            dignity2.text = dignity.text;
             return;
         }
 
@@ -103,6 +121,7 @@ public class Card : MonoBehaviour
         if (cardDignity == 12) dignity.text = "Д";
         if (cardDignity == 13) dignity.text = "K";
         if (cardDignity == 14) dignity.text = "Т";
+        dignity2.text = dignity.text;
     }
 
     private void SetSuitCardCalor()
@@ -110,10 +129,14 @@ public class Card : MonoBehaviour
         if (CardItem.CardSuit == CardSuit.Hearts || CardItem.CardSuit == CardSuit.Diamonds)
         {
             CardColor = CardColor.Red;
+            dignity.color = Color.red;
+            dignity2.color = Color.red;
             return;
         }
 
         CardColor = CardColor.Black;
+        dignity.color = Color.black;
+        dignity2.color = Color.black;
     }
 
     private void ClearAll()
