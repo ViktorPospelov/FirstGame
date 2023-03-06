@@ -16,6 +16,7 @@ public class PlayBed : CardBed
             _cards.Last().SetCardClose(true);
         }
     }
+    
 
     public override void OnDrop(PointerEventData eventData)
     {

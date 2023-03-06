@@ -22,8 +22,7 @@ public class Card : MonoBehaviour
     [FormerlySerializedAs("cardClose")] [SerializeField]
     private GameObject _cardClose;
 
-    [SerializeField]
-    private GameObject[] ImagCard;
+    [SerializeField] private GameObject[] ImagCard;
     [SerializeField] private TextMeshProUGUI dignity;
     [SerializeField] private TextMeshProUGUI dignity2;
 
@@ -46,16 +45,16 @@ public class Card : MonoBehaviour
     private float _step = 0f;
     private float _progress = 0f;
 
-    public void MoveCard(Vector2 starPostion,Vector2 endPostion)
+    public void MoveCard(Vector2 starPostion, Vector2 endPostion)
     {
         _starPostion = starPostion;
         _endPostion = endPostion;
-        _step = 0.1f;
+        _step = 0.05f;
     }
 
     private void FixedUpdate()
     {
-        if (_step>0)
+        if (_step > 0)
         {
             transform.position = Vector2.Lerp(_starPostion, _endPostion, _progress);
             _progress += _step;
@@ -63,9 +62,10 @@ public class Card : MonoBehaviour
             {
                 _step = 0;
                 gameObject.transform.localPosition = Vector3.zero;
+                if (CardBed is PlayBed)
+                    gameObject.transform.Translate(new Vector3(0, -Constant.Setting.ClosePlayCardIndent));
             }
         }
-        
     }
 
     public void SetCard(CardItem cardItem)
@@ -91,7 +91,7 @@ public class Card : MonoBehaviour
             }
         }
     }
-    
+
 
     public void OnCardClick()
     {

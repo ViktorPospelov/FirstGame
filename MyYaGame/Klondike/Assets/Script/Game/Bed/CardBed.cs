@@ -17,7 +17,8 @@ public class CardBed : MonoBehaviour, IDropHandler
         var card = Instantiate(insertCard);
         card.CardItem = insertCard.CardItem;
         card.CardColor = insertCard.CardColor;
-
+        card.CardBed = this;
+        card.MoveCard(deckBed.gameObject.transform.position,gameObject.transform.position);
         if (_cards.Count > 0)
         {
             card.gameObject.transform.SetParent(_cards.Last().gameObject.transform,
@@ -28,8 +29,7 @@ public class CardBed : MonoBehaviour, IDropHandler
             card.gameObject.transform.SetParent(transform, false);
         }
 
-        card.CardBed = this;
-        card.MoveCard(deckBed.gameObject.transform.position,gameObject.transform.position);
+        
         _cards.Add(card);
     }
 
