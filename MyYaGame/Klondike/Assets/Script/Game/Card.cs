@@ -50,7 +50,7 @@ public class Card : MonoBehaviour
     {
         _starPostion = starPostion;
         _endPostion = endPostion;
-        _step = 0.01f;
+        _step = 0.1f;
     }
 
     private void FixedUpdate()
