@@ -8,9 +8,9 @@ public class DeckBed : CardBed
 {
     [SerializeField] private DumpBed dumpBed;
 
-    public override void InsertStartCard(Card insertCard)
+    public override void InsertStartCard(Card insertCard, DeckBed deckBed)
     {
-        base.InsertStartCard(insertCard);
+        base.InsertStartCard(insertCard, deckBed);
         
         _cards.Last().gameObject.transform.Translate(new Vector3(-Constant.Setting.CloseCardIndent,
             Constant.Setting.CloseCardIndent));

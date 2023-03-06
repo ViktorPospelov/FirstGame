@@ -4,9 +4,9 @@ using UnityEngine.EventSystems;
 
 public class PlayBed : CardBed
 {
-    public override void InsertStartCard(Card insertCard)
+    public override void InsertStartCard(Card insertCard, DeckBed deckBed)
     {
-        base.InsertStartCard(insertCard);
+        base.InsertStartCard(insertCard, deckBed);
 
         if (_cards.Count > 1)
             _cards.Last().gameObject.transform.Translate(new Vector3(0, -Constant.Setting.ClosePlayCardIndent));

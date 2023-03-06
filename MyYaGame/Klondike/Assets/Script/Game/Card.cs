@@ -41,6 +41,32 @@ public class Card : MonoBehaviour
 
     private int _dignity;
 
+    private Vector2 _starPostion;
+    private Vector2 _endPostion;
+    private float _step = 0f;
+    private float _progress = 0f;
+
+    public void MoveCard(Vector2 starPostion,Vector2 endPostion)
+    {
+        _starPostion = starPostion;
+        _endPostion = endPostion;
+        _step = 0.01f;
+    }
+
+    private void FixedUpdate()
+    {
+        if (_step>0)
+        {
+            transform.position = Vector2.Lerp(_starPostion, _endPostion, _progress);
+            _progress += _step;
+            if (_progress > 1)
+            {
+                _step = 0;
+                gameObject.transform.localPosition = Vector3.zero;
+            }
+        }
+        
+    }
 
     public void SetCard(CardItem cardItem)
     {
@@ -65,6 +91,7 @@ public class Card : MonoBehaviour
             }
         }
     }
+    
 
     public void OnCardClick()
     {

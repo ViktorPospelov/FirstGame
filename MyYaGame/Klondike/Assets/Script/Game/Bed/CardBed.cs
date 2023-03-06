@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,7 +12,7 @@ public class CardBed : MonoBehaviour, IDropHandler
     public CardBedState CardBedState;
 
 
-    public virtual void InsertStartCard(Card insertCard)
+    public virtual void InsertStartCard(Card insertCard, DeckBed deckBed)
     {
         var card = Instantiate(insertCard);
         card.CardItem = insertCard.CardItem;
@@ -27,10 +29,11 @@ public class CardBed : MonoBehaviour, IDropHandler
         }
 
         card.CardBed = this;
-        card.gameObject.transform.localPosition = Vector3.zero;
+        card.MoveCard(deckBed.gameObject.transform.position,gameObject.transform.position);
         _cards.Add(card);
     }
 
+    
     public virtual void OnDrop(PointerEventData eventData)
     {
         Debug.Log("OnDrop-bed");

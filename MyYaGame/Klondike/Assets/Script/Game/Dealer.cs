@@ -11,7 +11,9 @@ public class Dealer : MonoBehaviour
     [SerializeField] private Card _card;
     [SerializeField] private CardBed[] _cardBeds;
 
-    private void Start()
+    private DeckBed _deckBed;
+
+        private void Start()
     {
         _deck = GetCardDeck52();
         SetStartMap();
@@ -19,6 +21,14 @@ public class Dealer : MonoBehaviour
 
     private void SetStartMap()
     {
+        foreach (var Cb in _cardBeds)
+        {
+            if (Cb is DeckBed)
+            {
+                _deckBed = (DeckBed)Cb;
+            }
+        }
+        
         int installedCard = 0;
         foreach (var bed in _cardBeds)
         {
@@ -28,7 +38,7 @@ public class Dealer : MonoBehaviour
                 _card.SetCard(_deck[installedCard]);
                 installedCard++;
                 _card.CardItem.CardBed = bed;
-                bed.InsertStartCard(_card);
+                bed.InsertStartCard(_card, _deckBed);
             }
         }
     }
