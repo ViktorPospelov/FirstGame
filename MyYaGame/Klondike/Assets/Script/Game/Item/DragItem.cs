@@ -42,7 +42,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
+        
         if (!_card.CardClose)
         {
             transform.position = Camera.main.ScreenToWorldPoint(new Vector3(eventData.position.x,
@@ -56,7 +56,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag");
+       
         _canvasGroup.blocksRaycasts = true;
        
         if (_dragLayer == transform.parent || _card.CardClose || _card.CardNoDrag)

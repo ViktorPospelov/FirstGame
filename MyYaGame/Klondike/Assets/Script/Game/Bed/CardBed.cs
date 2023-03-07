@@ -36,7 +36,7 @@ public class CardBed : MonoBehaviour, IDropHandler
     
     public virtual void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("OnDrop-bed");
+       
         GetCards();
 
         if (!CheckCanMove(eventData))

@@ -79,14 +79,18 @@ public class Card : MonoBehaviour
         SetCardDignity(cardItem.CardDignity);
         SetCardSuit();
 
+        
+        foreach (var i in ImagCard) i.SetActive(false);
+            
         if (_dignity > 10 && _dignity < 14)
         {
+            Debug.Log(_dignity);
             foreach (var Ic in ImagCard)
             {
                 Ic.SetActive(false);
                 if (Convert.ToInt32(Ic.name) == _dignity)
                 {
-                    Ic.SetActive(true);
+                 Ic.SetActive(true);
                 }
             }
         }
@@ -97,7 +101,6 @@ public class Card : MonoBehaviour
     {
         if (CardBed is DumpBed && ((DumpBed)CardBed).DeckEmty())
         {
-            Debug.Log("отправить в колоду");
             ((DumpBed)CardBed).ReturnDeck();
             return;
         }
