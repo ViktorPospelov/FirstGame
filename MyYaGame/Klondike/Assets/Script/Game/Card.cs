@@ -63,7 +63,11 @@ public class Card : MonoBehaviour
                 _step = 0;
                 gameObject.transform.localPosition = Vector3.zero;
                 if (CardBed is PlayBed)
-                    gameObject.transform.Translate(new Vector3(0, -Constant.Setting.ClosePlayCardIndent));
+                {
+                    gameObject.transform.Translate(new Vector3(0,
+                        CardBed.CardBedState == CardBedState.Empty ? 0 : -Constant.Setting.ClosePlayCardIndent));
+                    CardBed.GetCardBedState(null);
+                }
             }
         }
     }

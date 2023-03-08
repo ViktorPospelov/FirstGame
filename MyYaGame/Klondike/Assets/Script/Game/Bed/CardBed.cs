@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -18,7 +19,7 @@ public class CardBed : MonoBehaviour, IDropHandler
         card.CardItem = insertCard.CardItem;
         card.CardColor = insertCard.CardColor;
         card.CardBed = this;
-        card.MoveCard(deckBed.gameObject.transform.position,gameObject.transform.position);
+        card.MoveCard(deckBed.gameObject.transform.position, gameObject.transform.position);
         if (_cards.Count > 0)
         {
             card.gameObject.transform.SetParent(_cards.Last().gameObject.transform,
@@ -29,22 +30,21 @@ public class CardBed : MonoBehaviour, IDropHandler
             card.gameObject.transform.SetParent(transform, false);
         }
 
-        
+
         _cards.Add(card);
     }
 
-    
+
     public virtual void OnDrop(PointerEventData eventData)
     {
-       
         GetCards();
 
         if (!CheckCanMove(eventData))
             GetCard(eventData.pointerDrag).CardNoDrag = true;
-            
+
         CardBedState = GetCardBedState(_cards);
 
-        if(CardBedState.Empty == CardBedState)
+        if (CardBedState.Empty == CardBedState)
         {
             eventData.pointerDrag.transform.SetParent(transform);
         }
@@ -54,7 +54,7 @@ public class CardBed : MonoBehaviour, IDropHandler
         }
 
         GetCard(eventData.pointerDrag).CardBed = this;
-        
+
         GetCards();
     }
 
@@ -62,9 +62,12 @@ public class CardBed : MonoBehaviour, IDropHandler
     {
         return true;
     }
+
     protected void GetCards()
     {
-        _cards = GetComponentsInChildren<Card>().ToList(); 
+        _cards = GetComponentsInChildren<Card>().ToList();
+
+        CardBedState = GetCardBedState(_cards);
     }
 
     public Card GetCard(GameObject obj)
@@ -72,8 +75,13 @@ public class CardBed : MonoBehaviour, IDropHandler
         return obj.GetComponent<Card>();
     }
 
-    private CardBedState GetCardBedState(List<Card> cards)
+    public CardBedState GetCardBedState([CanBeNull] List<Card> cards)
     {
+        if (cards == null)
+        {
+            cards = _cards;
+        }
+
         if (cards.Count != 0)
         {
             foreach (var card in cards)
@@ -81,9 +89,12 @@ public class CardBed : MonoBehaviour, IDropHandler
                 if (card.CardClose) CardBedState = CardBedState.AllAreClose;
                 if (CardBedState == CardBedState.AllAreClose && !card.CardClose) return CardBedState.ThereAreClosed;
             }
+
             if (CardBedState == CardBedState.AllAreClose) return CardBedState;
             return CardBedState.AllAreOpen;
         }
+
+
         return CardBedState.Empty;
     }
 
