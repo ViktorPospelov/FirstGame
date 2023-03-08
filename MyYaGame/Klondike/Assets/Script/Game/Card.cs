@@ -122,7 +122,7 @@ public class Card : MonoBehaviour
             {
                 if (CardBed is DeckBed || !CardClose)
                 {
-                    ((DeckBed)CardBed).SetCardDumpBed(this);
+                    ((DeckBed)CardBed).SetCardDumpBed(this); //какие то трабл додумать
                 }
             }
         }
