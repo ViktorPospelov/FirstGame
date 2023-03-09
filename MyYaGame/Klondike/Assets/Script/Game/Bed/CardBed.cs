@@ -15,6 +15,8 @@ public class CardBed : MonoBehaviour, IDropHandler
 
     public virtual void InsertStartCard(Card insertCard, DeckBed deckBed)
     {
+        GetCards();
+        GetBedStates();
         var card = Instantiate(insertCard);
         card.CardItem = insertCard.CardItem;
         card.CardColor = insertCard.CardColor;
@@ -30,7 +32,7 @@ public class CardBed : MonoBehaviour, IDropHandler
             card.gameObject.transform.SetParent(transform, false);
         }
 
-
+        
         _cards.Add(card);
     }
 
@@ -38,6 +40,7 @@ public class CardBed : MonoBehaviour, IDropHandler
     public virtual void OnDrop(PointerEventData eventData)
     {
         GetCards();
+        GetBedStates();
 
         if (!CheckCanMove(eventData))
             GetCard(eventData.pointerDrag).CardNoDrag = true;
@@ -66,7 +69,9 @@ public class CardBed : MonoBehaviour, IDropHandler
     protected void GetCards()
     {
         _cards = GetComponentsInChildren<Card>().ToList();
-
+    }
+    protected void GetBedStates()
+    {
         CardBedState = GetCardBedState(_cards);
     }
 
@@ -101,6 +106,7 @@ public class CardBed : MonoBehaviour, IDropHandler
     public virtual void InsertCard(Card insertCard)
     {
         GetCards();
+        GetBedStates();
         insertCard.gameObject.transform.position = transform.position;
         insertCard.GetComponent<BacklightItem>().Blink(0.01f);
         insertCard.CardNoDrag = false;
