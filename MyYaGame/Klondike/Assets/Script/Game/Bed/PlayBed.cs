@@ -9,7 +9,7 @@ public class PlayBed : CardBed
         base.InsertStartCard(insertCard, deckBed);
 
         if (_cards.Count > 1)
-            _cards.Last().gameObject.transform.Translate(new Vector3(0, -Constant.Setting.ClosePlayCardIndent));
+            _cards.Last().gameObject.transform.Translate(new Vector3(0, 0));
 
         if (_cards.Count != startingNumberOfCards)
         {

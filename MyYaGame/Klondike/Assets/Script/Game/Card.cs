@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
@@ -44,6 +45,7 @@ public class Card : MonoBehaviour
     private Vector2 _endPostion;
     private float _step = 0f;
     private float _progress = 0f;
+    private bool _endMove = false;
 
     public void MoveCard(Vector2 starPostion, Vector2 endPostion)
     {
@@ -54,7 +56,7 @@ public class Card : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_step > 0)
+        if (_step > 0&& !_endMove)
         {
             transform.position = Vector2.Lerp(_starPostion, _endPostion, _progress);
             _progress += _step;
@@ -67,7 +69,10 @@ public class Card : MonoBehaviour
                     gameObject.transform.Translate(new Vector3(0,
                         CardBed.CardBedState == CardBedState.Empty ? 0 : -Constant.Setting.ClosePlayCardIndent));
                     CardBed.GetCardBedState(null);
+                    _endMove = true;
                 }
+                
+                
             }
         }
     }
