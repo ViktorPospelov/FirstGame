@@ -19,6 +19,7 @@ public class FinishBed : CardBed
         if (_cards.Count == 0)
         {
             if (GetCard(eventData.pointerDrag).CardItem.CardDignity == 14) return true;
+            return false;
         }
 
         if (_cards[0].CardItem.CardSuit != GetCard(eventData.pointerDrag).CardItem.CardSuit) return false;

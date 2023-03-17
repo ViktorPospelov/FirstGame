@@ -9,8 +9,7 @@ public class DumpBed : CardBed
     public override void OnDrop(PointerEventData eventData)
     {
         base.OnDrop(eventData);
-
-        eventData.pointerDrag.gameObject.GetComponent<Card>().SetCardClose(false);
+        
     }
     public void ReturnDeck()
     {
@@ -23,6 +22,11 @@ public class DumpBed : CardBed
     {
         if (deckBed.DeckEmty()) return true;
 
+        return false;
+    }
+
+    public override bool CheckCanMove(PointerEventData eventData)
+    {
         return false;
     }
 }
