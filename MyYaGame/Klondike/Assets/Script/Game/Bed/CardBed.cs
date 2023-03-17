@@ -16,7 +16,7 @@ public class CardBed : MonoBehaviour, IDropHandler
     public virtual void InsertStartCard(Card insertCard, DeckBed deckBed)
     {
         GetCards();
-      
+
         var card = Instantiate(insertCard);
         card.CardItem = insertCard.CardItem;
         card.CardColor = insertCard.CardColor;
@@ -32,7 +32,6 @@ public class CardBed : MonoBehaviour, IDropHandler
             card.gameObject.transform.SetParent(transform, false);
         }
 
-        
         _cards.Add(card);
     }
 
